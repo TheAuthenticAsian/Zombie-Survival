@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviourPunCallbacks
     public TMP_Text ammoText;
     public TMP_Text waveText;
     public TMP_Text zombieRemainingText;
+    public Slider health;
     // Strings
     private string currentWaveText = "Wave: ";
     private string newWaveText = "New Wave Starting: ";
@@ -32,5 +33,10 @@ public class UIManager : MonoBehaviourPunCallbacks
     public void ManageZombieRemaningText(int zombieRemaning) => zombieRemainingText.text = $"Zombies Remaning: {zombieRemaning}";
 
     public void ManageAmmoUI(int currentAmmo) => ammoText.text = $"{currentAmmo}/6";
+
+    public void ManageHealthUI(float currentHealth)
+    {
+        health.value = currentHealth;
+    }
 
 }

@@ -9,17 +9,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int currentWave = 0;
 
     public List<int> availablePlayers = new List<int>();
+    public List<int> alivePlayers = new List<int>();
 
     [PunRPC]
     public void AddPlayerToList(int player)
     {
         availablePlayers.Add(player);
+        alivePlayers.Add(player);
     }
 
     private void Awake()
     {
         instance = this;
-       
     }
     private void Start()
     {
@@ -51,6 +52,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void UpdateZombieRemainingUI(int currentZombies)
     {
         UIManager.instance.photonView.RPC("ManageZombieRemaningText", RpcTarget.All, currentZombies);
+    }
+
+    [PunRPC]
+    public void PlayerDied(int playerID)
+    {
+        alivePlayers.Remove(playerID);
     }
 
 }
