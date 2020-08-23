@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             currentTime--;
             yield return new WaitForSeconds(1);
         }
-        GameManager.instance.photonView.RPC("StartNextWave", RpcTarget.All);
+        StartNextWave();
     }
 
     public void StartNextWave()

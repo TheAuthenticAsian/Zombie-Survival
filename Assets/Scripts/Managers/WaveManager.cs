@@ -18,6 +18,7 @@ public class WaveManager : MonoBehaviour
 
     public void StartWave(int waveNumber)
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         StartCoroutine("SpawnInZombies", waveNumber * 2);
     }
 
