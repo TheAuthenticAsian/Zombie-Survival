@@ -24,9 +24,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         UIManager.instance.photonView.RPC("ManageCurrentWaveText", RpcTarget.All, currentWave);
-        GameManager.instance.photonView.RPC("StartTimerForNextWave", RpcTarget.All);
+        StartCoroutine("StartTimerForNextWave");
     }
-    [PunRPC]
     public IEnumerator StartTimerForNextWave()
     {
         int currentTime = 10;
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameManager.instance.photonView.RPC("StartNextWave", RpcTarget.All);
     }
 
-    [PunRPC]
     public void StartNextWave()
     {
         currentWave++;

@@ -32,7 +32,7 @@ public class WaveManager : MonoBehaviour
         GameManager.instance.UpdateZombieRemainingUI(currentZombies);
         if (currentZombies <= 0)
         {
-            GameManager.instance.photonView.RPC("StartTimerForNextWave", RpcTarget.All);
+            GameManager.instance.StartCoroutine("StartTimerForNextWave");
         }
     }
 
