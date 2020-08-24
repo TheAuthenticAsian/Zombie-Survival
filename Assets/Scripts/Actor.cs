@@ -9,7 +9,6 @@ public class Actor : MonoBehaviourPunCallbacks
     public float speed = 5;
     public float maxHealth = 100;
     public UnityEvent deathEvent;
-    public UnityAction tookDamage;
 
     protected float currentHealth;
     protected Rigidbody2D rb;
@@ -30,7 +29,6 @@ public class Actor : MonoBehaviourPunCallbacks
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        tookDamage?.Invoke();
         if (currentHealth <= 0)
         {
             deathEvent?.Invoke();

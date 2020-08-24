@@ -28,9 +28,9 @@ public class EnemyController : Actor
 
     private void Update()
     {
-        if (GameManager.instance.alivePlayers.Count == 0) return;
-        if (followingPlayerID == 0) followingPlayerID = GameManager.instance.alivePlayers[Random.Range(0, GameManager.instance.alivePlayers.Count)];
-        foreach(int player in GameManager.instance.alivePlayers)
+        if (GameManager.instance.availablePlayers.Count == 0) return;
+        if (followingPlayerID == 0) followingPlayerID = GameManager.instance.availablePlayers[Random.Range(0, GameManager.instance.availablePlayers.Count)];
+        foreach(int player in GameManager.instance.availablePlayers)
         {
             if((PhotonView.Find(player).gameObject.transform.position - transform.position).magnitude <= 3f)
             {

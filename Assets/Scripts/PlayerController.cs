@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Realtime;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : Actor
 {
@@ -35,34 +34,13 @@ public class PlayerController : Actor
         base.Start();
         SetFollow(transform);
         deathEvent.AddListener(OnDeath);
-        tookDamage += TookDamage;
     }
-
-    private void TookDamage()
-    {
-        UIManager.instance.ManageHealthUI(currentHealth);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            TakeDamage(10);
-        }
-    }
-
 
     private void OnDeath()
     {
         animator.SetBool("IsDead", true);
         isDead = true;
-        GameManager.instance.photonView.RPC("PlayerDied",RpcTarget.All,photonView.ViewID);
-        if (GameManager.instance.alivePlayers.Count == 0)
-        {
-            Application.Quit();
-            return;
-        }
-        SetFollow(PhotonView.Find(GameManager.instance.alivePlayers[Random.Range(0, GameManager.instance.alivePlayers.Count)]).gameObject.transform);
+        print("Oh No I'm Dead");
     }
 
     private void Update()
